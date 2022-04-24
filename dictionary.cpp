@@ -5,9 +5,11 @@
 
 using namespace std;
 
-// Dictionary Constructor
-// Get words from text file using ifstream
-// Insert words into set and vector (if valid)
+/* 
+    Dictionary Constructor
+    Get words from text file using ifstream
+    Insert words into set and vector (if valid)
+*/
 Dictionary::Dictionary(string filename){
     ifstream file(filename);
     string word;
@@ -23,8 +25,10 @@ Dictionary::Dictionary(string filename){
     file.close();
 }
 
-// Function determines if string is in dictionary
-// Returns true if string is already in set
+/* 
+    Function determines if string is in dictionary
+    Returns true if string is already in set
+*/
 bool Dictionary::validWord(string word) {
     if (words.find(word) != words.end()) {
         return true;
@@ -33,8 +37,10 @@ bool Dictionary::validWord(string word) {
     }
 }
 
-// Returns a random word from secrets vector
-// Seeds srand with time(NULL) for randomness
+/*
+    Returns a random word from secrets vector
+    Seeds srand with time for randomness
+*/
 string Dictionary::getLegalSecretWord(){
     srand(time(NULL));
     int randomIndex = rand() % secrets.size();
@@ -42,11 +48,13 @@ string Dictionary::getLegalSecretWord(){
     return secrets[randomIndex];
 }
 
-// Function checks if string parameter only has unique characters
+/*
+    Function checks if string parameter only has unique characters
+    Brute force compares each letter with eachother
+    Returns true only if no comparison matches
+*/
 bool Dictionary::isLegalSecretWord(string word){
     bool unique;
-    // Brute force comparison of each letter
-    // Return true if no letters match
     for (int i = 0; i < 4; i++){
         for (int j = i + 1; j < 5; j++){
             if (word[i] != word[j]) {
